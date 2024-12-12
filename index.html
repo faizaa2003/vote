@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting Eligibility</title>
+    <style>
+        #message {
+            font-size: 18px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+        <div>
+            <input id="ageinput" type="number" placeholder="Enter Age" style="padding: 10px; font-size: 16px;" />
+            <div id="message"></div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('ageinput').addEventListener('input', function () {
+            const age = parseInt(this.value);
+            const messageElement = document.getElementById('message');
+
+            if (isNaN(age)) {
+                messageElement.textContent = '';
+                messageElement.style.color = '';
+                return;
+            }
+
+            if (age < 0) {
+                messageElement.textContent = 'Invalid age';
+                messageElement.style.color = 'black';
+            } else if (age < 10) {
+                messageElement.textContent = 'Not eligible';
+                messageElement.style.color = 'red';
+            } else if (age < 18) {
+                messageElement.textContent = 'Not eligible, your voting age is coming soon!';
+                messageElement.style.color = 'lightcoral';
+            } else if (age <= 100) {
+                messageElement.textContent = 'Eligible';
+                messageElement.style.color = 'green';
+            } else if (age > 100) {
+                messageElement.textContent = 'You need special permission';
+                messageElement.style.color = 'darkgoldenrod';
+            }
+        });
+    </script>
+</body>
+</html>
